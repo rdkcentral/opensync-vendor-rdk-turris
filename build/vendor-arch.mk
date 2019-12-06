@@ -25,6 +25,15 @@ KCONFIG_TARGET ?= platform/rdk/kconfig/RDK
 # TODO: Specify additional CFLAGS if needed
 #RDK_CFLAGS  +=
 
+else ifeq ($(RDK_MACHINE),turris-pod)
+
+# TODO: Set correct OEM and model names
+RDK_OEM = turris
+RDK_MODEL = omnia
+
+# TODO: Specify additional CFLAGS if needed
+RDK_CFLAGS  += -DTURRIS_POD
+
 else
 $(error Unsupported RDK_MACHINE ($(RDK_MACHINE)).)
 endif
