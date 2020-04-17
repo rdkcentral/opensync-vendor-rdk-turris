@@ -46,6 +46,7 @@ The OSYNC HAL abstracts all hardware / system-level functions of the target
 that are not (yet) included in RDK API. Some of the APIs from this file can
 be a part of RDK (or similar) HAL API in the future.
 */
+
 #ifndef __OSYNC_HAL_CONFIG_H__
 #define __OSYNC_HAL_CONFIG_H__
 
