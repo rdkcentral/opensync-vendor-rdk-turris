@@ -19,8 +19,6 @@ ifeq ($(TARGET),RDKB)
 
 VENDOR = turris
 
-BACKHAUL_SSID = "we.piranha"
-
 CONTROLLER_PROTO = ssl
 CONTROLLER_PORT = 443
 CONTROLLER_HOST = "wildfire.plume.tech"
@@ -34,6 +32,8 @@ ifeq ($(RDK_MACHINE),$(filter $(RDK_MACHINE),turris turris-extender turris-bci))
 
 RDK_OEM = turris
 RDK_MODEL = omnia
+SERVICE_PROVIDERS = ALL
+export IMAGE_DEPLOYMENT_PROFILE = dev-academy
 
 ifeq ($(RDK_MACHINE), turris-extender)
 KCONFIG_TARGET ?= vendor/$(VENDOR)/kconfig/RDK_EXTENDER
