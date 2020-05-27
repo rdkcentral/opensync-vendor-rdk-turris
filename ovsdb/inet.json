@@ -4,9 +4,16 @@
         "op":"insert",
         "table":"Wifi_Inet_Config",
         "row": {
-            "if_name": "br-home",
+            "if_name": "brlan0",
             "ip_assign_scheme": "static",
             "if_type": "bridge",
+            "dhcpd":  ["map",[
+                              ["dhcp_option","26, 1600"],
+                              ["force","false"],
+                              ["lease_time", "12h"],
+                              ["start", "10.0.0.2"],
+                              ["stop", "10.0.0.253"]
+                      ]],
             "enabled": true
        }
     },
@@ -17,6 +24,46 @@
             "if_name": "br-wan",
             "ip_assign_scheme": "static",
             "if_type": "bridge",
+            "enabled": true
+       }
+    },
+    {
+        "op":"insert",
+        "table":"Wifi_Inet_Config",
+        "row": {
+            "if_name": "wifi2",
+            "ip_assign_scheme": "static",
+            "if_type": "vif",
+            "mtu": 1600,
+            "inet_addr": "169.254.0.1",
+            "netmask":"255.255.255.0",
+            "dhcpd":  ["map",[
+                              ["dhcp_option","26, 1600"],
+                              ["force","false"],
+                              ["lease_time", "12h"],
+                              ["start", "169.254.0.5"],
+                              ["stop", "169.254.0.253"]
+                      ]],
+            "enabled": true
+       }
+    },
+    {
+        "op":"insert",
+        "table":"Wifi_Inet_Config",
+        "row": {
+            "if_name": "wifi3",
+            "ip_assign_scheme": "static",
+            "if_type": "vif",
+            "mtu": 1600,
+            "inet_addr": "169.254.1.1",
+            "netmask":"255.255.255.0",
+            "dhcpd":  ["map",[
+                              ["dhcp_option","26, 1600"],
+                              ["force","false"],
+                              ["lease_time", "12h"],
+                              ["start", "169.254.1.5"],
+                              ["stop", "169.254.1.253"]
+                      ]],
             "enabled": true
        }
     }
