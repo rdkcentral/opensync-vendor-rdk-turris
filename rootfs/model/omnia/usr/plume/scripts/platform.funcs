@@ -26,7 +26,8 @@ platform_start() {
     # Called just before starting managers
     device_type=`cat /version.txt | grep imagename | cut -d':' -f2 | cut -d'-' -f3`
     if [ $device_type == "broadband" ]; then
-    # Doing nothing for broadband device
+        hostapd_cli -i global raw ADD bss_config=wifi2:/nvram/hostapd2.conf
+        hostapd_cli -i global raw ADD bss_config=wifi3:/nvram/hostapd3.conf
         return 0
     fi
 
