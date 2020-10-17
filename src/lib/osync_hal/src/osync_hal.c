@@ -30,6 +30,6 @@ limitations under the License.
 /*
  * If non-default implemetation of osync_hal API is needed,
  * please implement it here.
- * Otherwise, please choose default implementation by uncommenting
- * lines in osync_hal_config.h file.
+ * Otherwise, use the default implementation(s) by selecting respective
+ * option(s) in Kconfig.
  */

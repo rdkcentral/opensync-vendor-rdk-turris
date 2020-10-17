@@ -97,7 +97,7 @@ case "$1" in
 esac
 
 # custom scripts
-for x in /usr/plume/scripts/udhcpc.d/[0-9]*
+for x in /usr/opensync/scripts/udhcpc.d/[0-9]*
 do
 	[ ! -x "$x" ] && continue
 	# Execute custom scripts

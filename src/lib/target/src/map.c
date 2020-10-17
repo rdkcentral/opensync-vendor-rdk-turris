@@ -39,10 +39,14 @@ typedef struct
 
 static ifmap_t  ifmap[] = {
 //    idx   cloud-ifname     dev-ifname  bridge    gre-br            vlan     description
+#if !defined(CONFIG_RDK_EXTENDER)
+    { 3,    "wifi4",   "wifi4",    "brlan0", "wifi4", 0 },  // 2G onboard
+    { 3,    "wifi5",   "wifi5",    "brlan0", "wifi5",  0 },  // 5G onboard
     { 1,    "wifi2",   "wifi2",    "brlan0", "wifi2", 0 },  // 2G Backhaul
     { 1,    "wifi3",   "wifi3",    "brlan0", "wifi3",  0 },  // 5G Backhaul
     { 2,    "wifi0",    "wifi0",    "brlan0",  NULL,            0 },  // 2G User SSID
     { 2,    "wifi1",    "wifi1",    "brlan0",  NULL,            0 },  // 5G User SSID
+#endif
     { 0,    NULL,            NULL,        NULL,     NULL,            0 }
 };
 
