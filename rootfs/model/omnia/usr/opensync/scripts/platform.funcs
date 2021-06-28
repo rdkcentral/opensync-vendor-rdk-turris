@@ -34,6 +34,8 @@ platform_start() {
         return 0
     fi
 
+    touch /etc/device.properties
+
     # === Start Network interfaces ===
 
     ovs-vsctl add-br br-wan -- set bridge br-wan other-config:hwaddr=\"$(cat /sys/class/net/eth2/address)\"
@@ -73,11 +75,17 @@ platform_start() {
     # bhaul-ap-50
     iw dev wlan1 interface add wifi3 type __ap
 
-    # onboard-ap-24
+    # guest-ap-24
     iw dev wlan0 interface add wifi4 type __ap
 
-    # onboard-ap-50
+    # guest-ap-50
     iw dev wlan1 interface add wifi5 type __ap
+
+    # onboard-ap-24
+    iw dev wlan0 interface add wifi6 type __ap
+
+    # onboard-ap-50
+    iw dev wlan1 interface add wifi7 type __ap
 
     # == STA ==
 
