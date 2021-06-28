@@ -82,7 +82,7 @@ cat << EOF
         "op":"insert",
         "table":"Wifi_Inet_Config",
         "row": {
-            "if_name": "wifi4",
+            "if_name": "wifi6",
             "ip_assign_scheme": "static",
             "if_type": "vif",
             "mtu": 1600,
@@ -103,7 +103,7 @@ cat << EOF
         "op":"insert",
         "table":"Wifi_Inet_Config",
         "row": {
-            "if_name": "wifi5",
+            "if_name": "wifi7",
             "ip_assign_scheme": "static",
             "if_type": "vif",
             "mtu": 1600,
