@@ -99,6 +99,10 @@ platform_start() {
     touch /tmp/hostapd-acl1
     touch /tmp/hostapd-acl2
     touch /tmp/hostapd-acl3
+    touch /tmp/hostapd-acl4
+    touch /tmp/hostapd-acl5
+    touch /tmp/hostapd-acl6
+    touch /tmp/hostapd-acl7
     touch /tmp/hostapd0.psk
     touch /tmp/hostapd1.psk
     touch /tmp/bhaul-sta-24.conf
