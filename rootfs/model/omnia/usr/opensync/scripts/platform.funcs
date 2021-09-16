@@ -44,7 +44,11 @@ platform_start() {
     ifconfig eth2.4 up
 
     # == LAN ==
-    ovs-vsctl add-br brlan0
+    if [ $device_type == "broadband" ]; then
+        ovs-vsctl add-br brlan0
+    else
+        ovs-vsctl add-br brlan0 -- set bridge brlan0 other-config:hwaddr=\"$(cat /sys/class/net/eth1/address)\"
+    fi
     ovs-vsctl add-port brlan0 lan0
     ovs-vsctl add-port brlan0 lan1
     ovs-vsctl add-port brlan0 lan2
