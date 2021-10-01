@@ -28,7 +28,7 @@ VERSION_NO_SHA1 = 1
 VERSION_NO_PROFILE = 1
 
 #This vendor layer support Turris Omnia as a residential / business gateway and Turris omnia as Extender/GW
-ifeq ($(RDK_MACHINE),$(filter $(RDK_MACHINE),turris turris-extender turris-bci))
+ifeq ($(RDK_MACHINE),$(filter $(RDK_MACHINE),turris turris-extender turris-bci turris_5.10))
 
 RDK_OEM = turris
 RDK_MODEL = omnia
