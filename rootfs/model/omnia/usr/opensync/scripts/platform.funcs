@@ -64,32 +64,36 @@ platform_start() {
     ifconfig brlan0 up
 
     # == VAPs ==
+    WIFI0_MAC=`cat /sys/class/net/wlan0/address`
+    WIFI1_MAC=`cat /sys/class/net/wlan1/address`
 
     # home-ap-24
-    iw dev wlan0 interface add wifi0 type __ap
+    iw dev wlan0 interface add wifi0 type __ap addr $(echo 0x$WIFI0_MAC| awk -F: '{printf "%02x:%s:%s:%s:%s:%s", strtonum($1)+2, $2, $3, $4 ,$5, $6}')
     ovs-vsctl add-port brlan0 wifi0
+    hostapd_cli -i global raw ADD bss_config=phy0:/nvram/hostapd0.conf
 
     # home-ap-50
-    iw dev wlan1 interface add wifi1 type __ap
+    iw dev wlan1 interface add wifi1 type __ap addr $(echo 0x$WIFI1_MAC| awk -F: '{printf "%02x:%s:%s:%s:%s:%s", strtonum($1)+2, $2, $3, $4 ,$5, $6}')
     ovs-vsctl add-port brlan0 wifi1
+    hostapd_cli -i global raw ADD bss_config=phy1:/nvram/hostapd1.conf
 
     # bhaul-ap-24
-    iw dev wlan0 interface add wifi2 type __ap
+    iw dev wlan0 interface add wifi2 type __ap addr $(echo 0x$WIFI0_MAC| awk -F: '{printf "%02x:%s:%s:%s:%s:%s", strtonum($1)+4, $2, $3, $4 ,$5, $6}')
 
     # bhaul-ap-50
-    iw dev wlan1 interface add wifi3 type __ap
+    iw dev wlan1 interface add wifi3 type __ap addr $(echo 0x$WIFI1_MAC| awk -F: '{printf "%02x:%s:%s:%s:%s:%s", strtonum($1)+4, $2, $3, $4 ,$5, $6}')
 
     # guest-ap-24
-    iw dev wlan0 interface add wifi4 type __ap
+    iw dev wlan0 interface add wifi4 type __ap addr $(echo 0x$WIFI0_MAC| awk -F: '{printf "%02x:%s:%s:%s:%s:%s", strtonum($1)+6, $2, $3, $4 ,$5, $6}')
 
     # guest-ap-50
-    iw dev wlan1 interface add wifi5 type __ap
+    iw dev wlan1 interface add wifi5 type __ap addr $(echo 0x$WIFI1_MAC| awk -F: '{printf "%02x:%s:%s:%s:%s:%s", strtonum($1)+6, $2, $3, $4 ,$5, $6}')
 
     # onboard-ap-24
-    iw dev wlan0 interface add wifi6 type __ap
+    iw dev wlan0 interface add wifi6 type __ap addr $(echo 0x$WIFI0_MAC| awk -F: '{printf "%02x:%s:%s:%s:%s:%s", strtonum($1)+8, $2, $3, $4 ,$5, $6}')
 
     # onboard-ap-50
-    iw dev wlan1 interface add wifi7 type __ap
+    iw dev wlan1 interface add wifi7 type __ap addr $(echo 0x$WIFI1_MAC| awk -F: '{printf "%02x:%s:%s:%s:%s:%s", strtonum($1)+8, $2, $3, $4 ,$5, $6}')
 
     # == STA ==
 
@@ -114,6 +118,8 @@ platform_start() {
 
     wpa_cli -g/var/run/wpa_supplicant-global interface_add bhaul-sta-24 /tmp/bhaul-sta-24.conf nl80211 /var/run/wpa_supplicant
     wpa_cli -g/var/run/wpa_supplicant-global interface_add bhaul-sta-50 /tmp/bhaul-sta-50.conf nl80211 /var/run/wpa_supplicant
+
+    ifconfig brlan0 up
 
     return 0
 }
