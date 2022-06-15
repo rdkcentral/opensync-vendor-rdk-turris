@@ -115,6 +115,9 @@ platform_start() {
     wpa_cli -g/var/run/wpa_supplicant-global interface_add bhaul-sta-24 /tmp/bhaul-sta-24.conf nl80211 /var/run/wpa_supplicant
     wpa_cli -g/var/run/wpa_supplicant-global interface_add bhaul-sta-50 /tmp/bhaul-sta-50.conf nl80211 /var/run/wpa_supplicant
 
+    hostapd_cli -i global raw ADD bss_config=phy0:/nvram/hostapd0.conf
+    hostapd_cli -i global raw ADD bss_config=phy1:/nvram/hostapd1.conf
+
     return 0
 }
 
